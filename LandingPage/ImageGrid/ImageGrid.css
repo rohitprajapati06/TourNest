@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-y: hidden;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  overflow-y: hidden;
+  height: 100%; /* Adjust this to your grid's desired height */
+  animation: scrollDown 20s linear infinite;
+}
+
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.fixed-text {
+  position: fixed;
+  top: -100px; /* Start above the viewport */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 50px;
+  z-index: 1000;
+  border-radius: 5px;
+  text-align: center;
+  opacity: 0; /* Initially hidden */
+  transition: top 1s ease, opacity 1s ease; /* Smooth transition for both top and opacity */
+}
+
+.fixed-text.show {
+  top: 20%; /* Move to 20% of the viewport height after the transition */
+  opacity: 1; /* Make it visible */
+}
+
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+  .fixed-text{
+    font-size: 15px;
+  }
+}
+
+/* Animation for auto-scroll */
+@keyframes scrollDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-74%); /* Stops before the end */
+  }
+}
